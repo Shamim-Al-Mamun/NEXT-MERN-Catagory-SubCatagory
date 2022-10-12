@@ -25,23 +25,23 @@ function index() {
         return () => controller.abort();
     }, [])
 
-    const arr: any[] = [1, 2, 3, ["a", "b"], 4, 5, ["c", "d", [1, 2, "a", "b", [0, 0]], 6]];
+    // const arr: any[] = [1, 2, 3, ["a", "b"], 4, 5, ["c", "d", [1, 2, "a", "b", [0, 0]], 6]];
 
-    const printElementsOfArr = (arr: any) => {
-        if (!!arr.length) {
-            if (!!!arr[0].length) {
-                console.log(arr[0]);
-            }
-            else {
-                if (!!arr[0].length) {
-                    console.log(arr[0][0]);
-                }
-                printElementsOfArr(arr[0].slice(1))
-            }
-            printElementsOfArr(arr.slice(1))
-        }
-    }
-    printElementsOfArr(arr)
+    // const printElementsOfArr = (arr: any) => {
+    //     if (!!arr.length) {
+    //         if (!!!arr[0].length) {
+    //             console.log(arr[0]);
+    //         }
+    //         else {
+    //             if (!!arr[0].length) {
+    //                 console.log(arr[0][0]);
+    //             }
+    //             printElementsOfArr(arr[0].slice(1))
+    //         }
+    //         printElementsOfArr(arr.slice(1))
+    //     }
+    // }
+    // printElementsOfArr(arr)
 
     return (
         <>
