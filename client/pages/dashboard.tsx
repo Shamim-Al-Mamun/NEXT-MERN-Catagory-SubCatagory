@@ -3,13 +3,14 @@ import axios from 'axios';
 import Link from 'next/link';
 
 //API
-const baseURL = "http://localhost:3005/api"
+const baseURL = "http://localhost:3004/api"
 
 
 function CreateCatagory() {
 
     //State declaration
     const [catagories, setCatagories]: any = useState([])
+    const [message, setMessage]: string = useState("")
 
     const [newCatagory, setNewCatagory]: any = useState({
         catagory_name: "",
@@ -29,10 +30,16 @@ function CreateCatagory() {
             catagoryParentID: 0,
             catagory_form: 1
         }
-        axios
-            .post(`${baseURL}/catagories`, newCatagory)
-            .then(res => setCatagories(res?.data?.catagories))
-            .catch(err => console.log(err));
+        if (newCatagory?.catagory_name) {
+            // axios
+            //     .post(`${baseURL}/catagories`, newCatagory)
+            //     .then(res => setCatagories(res?.data?.catagories))
+            //     .catch(err => console.log(err));
+            setMessage("")
+        }
+        else {
+            setMessage("Enter catagory name!")
+        }
     }
 
     useEffect(() => {
@@ -61,8 +68,9 @@ function CreateCatagory() {
                 <form onSubmit={saveCatagory}>
                     <div className='my-2'>
                         <label>Catagory Name: </label>
-                        <input placeholder='Catagory Name' onChange={(e) => setNewCatagory({ ...newCatagory, catagory_name: e.target.value })} />
+                        <input placeholder='Catagory Name' onChange={(e) => { setNewCatagory({ ...newCatagory, catagory_name: e.target.value }); setMessage("") }} />
                     </div>
+                    {message && <div className='text-xs text-red'>{message}</div>}
                     <div className='my-2'>
                         <label>Select Parent : </label>
                         <select name="catagory" id="catagory" onChange={(e) => setNewCatagory({ ...newCatagory, catagoryParentID: e.target.value })}>
